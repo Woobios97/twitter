@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 class RegisterViewController: UIViewController {
+    
+    private var viewModel = RegisterViewViewModel()
+    private var subscriptions: Set<AnyCancellable> = []
     
     private let registerTitleLabel: UILabel = {
         let label = UILabel()
@@ -40,16 +44,48 @@ class RegisterViewController: UIViewController {
     }()
     
     private let registerButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("계정 만들기", for: .normal)
+        button.setTitle("계정만들기", for: .normal)
         button.tintColor = .white
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         button.backgroundColor = UIColor(red: 29/255, green: 141/255, blue: 242/255, alpha: 1)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 20
+        button.isEnabled = false
         return button
     }()
+    
+    @objc private func didChangeEmailField() {
+        viewModel.email = emailTextField.text
+        viewModel.vaildRegisterationForm()
+    }
+    
+    @objc private func didChangePassworField() {
+        viewModel.password = passwordTextField.text
+        viewModel.vaildRegisterationForm()
+    }
+    
+    private func bindViews() {
+        emailTextField.addTarget(self, action: #selector(didChangeEmailField), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(didChangePassworField), for: .editingChanged)
+        
+        viewModel.$isRegisterationFormVaild.sink { [weak self] validatinonState in
+            self?.registerButton.isEnabled = validatinonState
+        }
+        .store(in: &subscriptions)
+        
+        // 사용자 정보 업데이트
+        viewModel.$user.sink { [weak self] user in
+            print("유저등록을 완료한 유저 : \(user)")
+        }
+        .store(in: &subscriptions)
+        
+    }
+    
+    @objc private func didTapDismiss() {
+        view.endEditing(true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,8 +94,15 @@ class RegisterViewController: UIViewController {
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
         view.addSubview(registerButton)
-        
+        registerButton.addTarget(self, action: #selector(didTapRegister), for: .touchUpInside)
         configureConstraints()
+        view.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(didTapDismiss)))
+        bindViews()
+    }
+    
+    @objc private func didTapRegister() {
+        print("계정만들기 눌림")
+        viewModel.createUser()
     }
 
     private func configureConstraints() {
