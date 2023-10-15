@@ -19,7 +19,6 @@
 		A5BD5DFD2AD54E5A002E5149 /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BD5DFC2AD54E5A002E5149 /* MainTabbarViewController.swift */; };
 		A5BD5E022AD54E5C002E5149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5BD5E012AD54E5C002E5149 /* Assets.xcassets */; };
 		A5BD5E052AD54E5C002E5149 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5BD5E032AD54E5C002E5149 /* LaunchScreen.storyboard */; };
-		A5E4FF542ADA6755002DE408 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5E4FF532ADA6755002DE408 /* GoogleService-Info.plist */; };
 		A5E4FF572ADA6843002DE408 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A5E4FF562ADA6843002DE408 /* FirebaseAnalytics */; };
 		A5E4FF592ADA6843002DE408 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = A5E4FF582ADA6843002DE408 /* FirebaseAnalyticsOnDeviceConversion */; };
 		A5E4FF5B2ADA6843002DE408 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5E4FF5A2ADA6843002DE408 /* FirebaseAnalyticsSwift */; };
@@ -49,6 +48,9 @@
 		A5E4FF8B2ADA6843002DE408 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = A5E4FF8A2ADA6843002DE408 /* FirebaseStorageCombine-Community */; };
 		A5E4FF8E2ADA69A9002DE408 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4FF8D2ADA69A9002DE408 /* OnboardingViewController.swift */; };
 		A5E4FF902ADA9F9C002DE408 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4FF8F2ADA9F9C002DE408 /* RegisterViewController.swift */; };
+		A5E4FF932ADBB079002DE408 /* RegisterViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4FF922ADBB079002DE408 /* RegisterViewViewModel.swift */; };
+		A5E4FF962ADBDA8D002DE408 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4FF952ADBDA8D002DE408 /* AuthManager.swift */; };
+		A5E4FF982ADBE40C002DE408 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5E4FF972ADBE40C002DE408 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,9 +68,11 @@
 		A5BD5E012AD54E5C002E5149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5BD5E042AD54E5C002E5149 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5BD5E062AD54E5C002E5149 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A5E4FF532ADA6755002DE408 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5E4FF8D2ADA69A9002DE408 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		A5E4FF8F2ADA9F9C002DE408 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		A5E4FF922ADBB079002DE408 /* RegisterViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewViewModel.swift; sourceTree = "<group>"; };
+		A5E4FF952ADBDA8D002DE408 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		A5E4FF972ADBE40C002DE408 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,14 +171,16 @@
 		A5BD5DF72AD54E5A002E5149 /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				A5E4FF942ADBDA7D002DE408 /* Networking */,
+				A5E4FF912ADBB05E002DE408 /* ViewModel */,
 				A525541A2AD641A5000DB23C /* Views */,
 				A52553F02AD5BD16000DB23C /* Controllers */,
 				A5BD5DF82AD54E5A002E5149 /* AppDelegate.swift */,
 				A5BD5DFA2AD54E5A002E5149 /* SceneDelegate.swift */,
 				A5BD5E012AD54E5C002E5149 /* Assets.xcassets */,
 				A5BD5E032AD54E5C002E5149 /* LaunchScreen.storyboard */,
+				A5E4FF972ADBE40C002DE408 /* GoogleService-Info.plist */,
 				A5BD5E062AD54E5C002E5149 /* Info.plist */,
-				A5E4FF532ADA6755002DE408 /* GoogleService-Info.plist */,
 			);
 			path = Twitter;
 			sourceTree = "<group>";
@@ -186,6 +192,22 @@
 				A5E4FF8D2ADA69A9002DE408 /* OnboardingViewController.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		A5E4FF912ADBB05E002DE408 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A5E4FF922ADBB079002DE408 /* RegisterViewViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A5E4FF942ADBDA7D002DE408 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A5E4FF952ADBDA8D002DE408 /* AuthManager.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,7 +302,7 @@
 			files = (
 				A5BD5E052AD54E5C002E5149 /* LaunchScreen.storyboard in Resources */,
 				A5BD5E022AD54E5C002E5149 /* Assets.xcassets in Resources */,
-				A5E4FF542ADA6755002DE408 /* GoogleService-Info.plist in Resources */,
+				A5E4FF982ADBE40C002DE408 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,12 +314,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A52553F52AD5BDD9000DB23C /* SearchViewController.swift in Sources */,
+				A5E4FF962ADBDA8D002DE408 /* AuthManager.swift in Sources */,
 				A5BD5DFD2AD54E5A002E5149 /* MainTabbarViewController.swift in Sources */,
 				A52553F72AD5BDE5000DB23C /* NotificationViewController.swift in Sources */,
 				A5E4FF902ADA9F9C002DE408 /* RegisterViewController.swift in Sources */,
 				A5BD5DF92AD54E5A002E5149 /* AppDelegate.swift in Sources */,
 				A52553F92AD5BDF3000DB23C /* DirectMessageViewController.swift in Sources */,
 				A5BD5DFB2AD54E5A002E5149 /* SceneDelegate.swift in Sources */,
+				A5E4FF932ADBB079002DE408 /* RegisterViewViewModel.swift in Sources */,
 				A525541F2AD79058000DB23C /* ProfileViewController.swift in Sources */,
 				A52553F32AD5BDCA000DB23C /* HomeViewController.swift in Sources */,
 				A52554212AD79834000DB23C /* ProfileTableViewHeader.swift in Sources */,
