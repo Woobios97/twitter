@@ -1,22 +1,22 @@
 //
-//  RegisterViewController.swift
+//  LoginViewController.swift
 //  Twitter
 //
-//  Created by 김우섭 on 10/14/23.
+//  Created by 김우섭 on 10/16/23.
 //
 
 import UIKit
 import Combine
 
-class RegisterViewController: UIViewController {
+class LoginViewController: UIViewController {
     
     private var viewModel = AuthenticationViewViewModel()
     private var subscriptions: Set<AnyCancellable> = []
     
-    private let registerTitleLabel: UILabel = {
+    private let loginTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "당신의 계정을 만들어보세요"
+        label.text = "로그인을 하세요"
         label.font = .systemFont(ofSize: 32, weight: .bold)
         return label
     }()
@@ -43,10 +43,10 @@ class RegisterViewController: UIViewController {
         return textField
     }()
     
-    private let registerButton: UIButton = {
+    private let loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("계정만들기", for: .normal)
+        button.setTitle("로그인", for: .normal)
         button.tintColor = .white
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         button.backgroundColor = UIColor(red: 29/255, green: 141/255, blue: 242/255, alpha: 1)
@@ -71,7 +71,7 @@ class RegisterViewController: UIViewController {
         passwordTextField.addTarget(self, action: #selector(didChangePassworField), for: .editingChanged)
         
         viewModel.$validateAuthenticationFormVaild.sink { [weak self] validatinonState in
-            self?.registerButton.isEnabled = validatinonState
+            self?.loginButton.isEnabled = validatinonState
         }
         .store(in: &subscriptions)
         
@@ -99,37 +99,33 @@ class RegisterViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    @objc private func didTapDismiss() {
-        view.endEditing(true)
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        view.addSubview(registerTitleLabel)
+        view.addSubview(loginTitleLabel)
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
-        view.addSubview(registerButton)
-        registerButton.addTarget(self, action: #selector(didTapRegister), for: .touchDown)
+        view.addSubview(loginButton)
+        loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchDown)
+
         configureConstraints()
-        view.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(didTapDismiss)))
         bindViews()
     }
     
-    @objc private func didTapRegister() {
-        print("계정만들기 눌림")
-        viewModel.createUser()
+    @objc private func didTapLogin() {
+        viewModel.loginUser()
     }
-
+    
     private func configureConstraints() {
-        let registerTitleLabelConstraints = [
-            registerTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            registerTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+        let loginTitleLabelConstraints = [
+            loginTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
         ]
         
         let emailTextFieldConstraints = [
             emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            emailTextField.topAnchor.constraint(equalTo: registerTitleLabel.bottomAnchor, constant: 20),
+            emailTextField.topAnchor.constraint(equalTo: loginTitleLabel.bottomAnchor, constant: 20),
             emailTextField.widthAnchor.constraint(equalToConstant: view.frame.width - 40),
             emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             emailTextField.heightAnchor.constraint(equalToConstant: 60)
@@ -143,17 +139,17 @@ class RegisterViewController: UIViewController {
             passwordTextField.heightAnchor.constraint(equalToConstant: 60)
         ]
         
-        let registerButtonConstraints = [
-            registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            registerButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
-            registerButton.widthAnchor.constraint(equalToConstant: 180),
-            registerButton.heightAnchor.constraint(equalToConstant: 50)
+        let loginButtonConstraints = [
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
+            loginButton.widthAnchor.constraint(equalToConstant: 180),
+            loginButton.heightAnchor.constraint(equalToConstant: 50)
         ]
         
-        NSLayoutConstraint.activate(registerTitleLabelConstraints)
+        NSLayoutConstraint.activate(loginTitleLabelConstraints)
         NSLayoutConstraint.activate(emailTextFieldConstraints)
         NSLayoutConstraint.activate(passwordTextFieldConstraints)
-        NSLayoutConstraint.activate(registerButtonConstraints)
+        NSLayoutConstraint.activate(loginButtonConstraints)
     }
 
 }
