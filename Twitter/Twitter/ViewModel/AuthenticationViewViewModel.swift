@@ -41,12 +41,27 @@ final class AuthenticationViewViewModel: ObservableObject {
               let password = password else { return }
         print("등록완료")
         AuthManager.shared.registerUser(with: email, password: password)
+            .handleEvents(receiveOutput: { [weak self] user in
+                self?.user = user
+            })
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
                     self?.error = error.localizedDescription
                 }
             } receiveValue: { [weak self] user in   // Firebase 응답처리
-                self?.user = user
+                self?.createRecord(for: user)
+            }
+            .store(in: &subscriptions)
+    }
+    
+    func createRecord(for user: User) {
+        DatabaseManager.shared.collectionUsers(add: user)
+            .sink { [weak self] completion in
+                if case .failure(let error) = completion {
+                    self?.error = error.localizedDescription
+                }
+            } receiveValue: { state in
+                print("데이터베이스에 유저를 기록하기: \(state)")
             }
             .store(in: &subscriptions)
     }
