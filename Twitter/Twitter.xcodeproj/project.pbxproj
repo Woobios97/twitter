@@ -57,6 +57,7 @@
 		A5E4FFA12ADD029C002DE408 /* HomeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4FFA02ADD029C002DE408 /* HomeViewViewModel.swift */; };
 		A5E4FFA32ADD0B21002DE408 /* ProfileDataFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4FFA22ADD0B21002DE408 /* ProfileDataFormViewController.swift */; };
 		A5E4FFA52ADD0BF0002DE408 /* ProfileDataFormViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4FFA42ADD0BF0002DE408 /* ProfileDataFormViewViewModel.swift */; };
+		A5E4FFA72ADF0589002DE408 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4FFA62ADF0589002DE408 /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		A5E4FFA02ADD029C002DE408 /* HomeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewViewModel.swift; sourceTree = "<group>"; };
 		A5E4FFA22ADD0B21002DE408 /* ProfileDataFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataFormViewController.swift; sourceTree = "<group>"; };
 		A5E4FFA42ADD0BF0002DE408 /* ProfileDataFormViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataFormViewViewModel.swift; sourceTree = "<group>"; };
+		A5E4FFA62ADF0589002DE408 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +226,7 @@
 			children = (
 				A5E4FF952ADBDA8D002DE408 /* AuthManager.swift */,
 				A5E4FF9E2ADCFF2D002DE408 /* DatabaseManager.swift */,
+				A5E4FFA62ADF0589002DE408 /* StorageManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				A52553F52AD5BDD9000DB23C /* SearchViewController.swift in Sources */,
 				A5E4FF962ADBDA8D002DE408 /* AuthManager.swift in Sources */,
 				A5BD5DFD2AD54E5A002E5149 /* MainTabbarViewController.swift in Sources */,
+				A5E4FFA72ADF0589002DE408 /* StorageManager.swift in Sources */,
 				A5E4FF9A2ADC54FB002DE408 /* LoginViewController.swift in Sources */,
 				A5E4FF9F2ADCFF2D002DE408 /* DatabaseManager.swift in Sources */,
 				A52553F72AD5BDE5000DB23C /* NotificationViewController.swift in Sources */,
