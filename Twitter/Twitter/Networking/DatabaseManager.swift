@@ -26,11 +26,17 @@ class DatabaseManager {
             .eraseToAnyPublisher()
     }
     
-    // databasedp id로 유저확인
+    // database에 id로 유저확인
     func collectionUser(retreive id: String) -> AnyPublisher<TwitterUser, Error> {
         db.collection(usersPath).document(id).getDocument()
             .tryMap { try $0.data(as: TwitterUser.self) }
             .eraseToAnyPublisher()
     }
+    
+    // database에 updateFields추가
+    func collectionUser(updateFields: [String: Any], for id: String) -> AnyPublisher<Bool, Error> {
+        db.collection(usersPath).document(id).updateData(updateFields)
+            .map { _ in true }
+            .eraseToAnyPublisher()
+    }
 }
-
