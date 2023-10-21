@@ -143,6 +143,12 @@ class ProfileDataFormViewController: UIViewController {
             self?.submitButton.isEnabled = buttonState
         }
         .store(in: &subscription)
+        // 온보딩 작업이 끝났다면 dismiss
+        viewModel.$isOnboardingFinished.sink { [weak self] success in
+            if success {
+                self?.dismiss(animated: true)
+            }
+        }.store(in: &subscription)
     }
     
     @objc private func didTapToUpload() {
@@ -196,7 +202,7 @@ class ProfileDataFormViewController: UIViewController {
             bioTextView.leadingAnchor.constraint(equalTo: displayNameTextField.leadingAnchor),
             bioTextView.trailingAnchor.constraint(equalTo: displayNameTextField.trailingAnchor),
             bioTextView.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: 20),
-            bioTextView.heightAnchor.constraint(equalToConstant: 150)
+            bioTextView.heightAnchor.constraint(equalToConstant: 150),
         ]
         
         let submitButtonConstraints = [
@@ -235,6 +241,7 @@ extension ProfileDataFormViewController: UITextViewDelegate, UITextFieldDelegate
     
     func textViewDidChange(_ textView: UITextView) {
         viewModel.bio = textView.text
+        viewModel.validateUserProfileForm()
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
