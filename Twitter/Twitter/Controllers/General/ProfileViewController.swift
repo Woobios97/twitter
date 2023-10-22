@@ -67,6 +67,7 @@ class ProfileViewController: UIViewController {
             } else {
                 print("Invalid avatar URL")
             }
+            self?.headerView.joinedDataLabel.text = "Joined \(self?.viewModel.getFormattedDate(with: user.createdOn) ?? "")"
         }
         .store(in: &subscriptions)
     }
@@ -76,7 +77,7 @@ class ProfileViewController: UIViewController {
             profileTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             profileTableView.topAnchor.constraint(equalTo: view.topAnchor),
             profileTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            profileTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ]
         
         let statusBarConstraints = [

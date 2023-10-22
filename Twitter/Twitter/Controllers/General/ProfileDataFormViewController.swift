@@ -93,7 +93,7 @@ class ProfileDataFormViewController: UIViewController {
         button.setTitle("등록하기", for: .normal)
         button.tintColor = .white
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
-        button.backgroundColor = UIColor(red: 29/255, green: 141/255, blue: 242/255, alpha: 1)
+        button.backgroundColor = .twitterBlueColor
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 20
         button.isEnabled = false
