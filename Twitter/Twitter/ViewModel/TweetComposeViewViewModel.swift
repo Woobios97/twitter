@@ -40,7 +40,7 @@ final class TweetComposeViewViewModel: ObservableObject {
     // 사용자 정보와 트윗 내용을 기반으로 새로운 트윗 객체를 생성
     func dispatchTweet() {
         guard let user = user else { return }
-        let tweet = Tweet(author: user, tweetContent: tweetContent, likesCount: 0, likers: [], isReply: false, parentReference: nil)
+        let tweet = Tweet(author: user, authorID: user.id, tweetContent: tweetContent, likesCount: 0, likers: [], isReply: false, parentReference: nil)
         DatabaseManager.shared.collectionTweet(dispatch: tweet)
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {

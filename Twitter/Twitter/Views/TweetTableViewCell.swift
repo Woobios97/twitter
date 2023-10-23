@@ -28,14 +28,12 @@ class TweetTableViewCell: UITableViewCell {
         imageView.layer.cornerRadius = 25
         imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true
-        imageView.image = UIImage(systemName: "person")
         imageView.backgroundColor = .red
         return imageView
     }()
     
     private let displayNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "WooSub"
         label.font = .systemFont(ofSize: 18, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -43,7 +41,6 @@ class TweetTableViewCell: UITableViewCell {
     
     private let userNameLable: UILabel = {
         let label = UILabel()
-        label.text = "@Woo"
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textColor = .secondaryLabel
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +50,6 @@ class TweetTableViewCell: UITableViewCell {
     private let tweetTextContentLable: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "나도 할 수 있어!! 너네들 내가 다 이겨, 나도 할 수 있어!! 너네들 내가 다 이겨 나도 할 수 있어!! 너네들 내가 다 이겨 나도 할 수 있어!! 너네들 내가 다 이겨 나도 할 수 있어!! 너네들 내가 다 이겨 나도 할 수 있어!! 너네들 내가 다 이겨 나도 할 수 있어!! 너네들 내가 다 이겨"
         label.numberOfLines = 0
         return label
     }()
@@ -127,6 +123,13 @@ class TweetTableViewCell: UITableViewCell {
         retweetButton.addTarget(self, action: #selector(didTapRetweet), for: .touchUpInside)
         likeButton.addTarget(self, action: #selector(didTaplike), for: .touchUpInside)
         shareButton.addTarget(self, action: #selector(didTapShare), for: .touchUpInside)
+    }
+    
+    func configureTweet(with displayName: String, userName: String, tweetTextContent: String, avavatarPath: String) {
+        displayNameLabel.text = displayName
+        userNameLable.text = "@\(userName)"
+        tweetTextContentLable.text = tweetTextContent
+        avatarImageView.sd_setImage(with: URL(string: avavatarPath))
     }
     
     private func configureConstraints() {

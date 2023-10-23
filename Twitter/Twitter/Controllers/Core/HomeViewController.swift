@@ -111,6 +111,13 @@ class HomeViewController: UIViewController {
             }
         }
         .store(in: &subscriptions)
+        
+        // tweets의 배열의 변경을 감지, 테이블뷰를 다시로드
+        viewModel.$tweets.sink { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.timelineTableView.reloadData()
+            }
+        }.store(in: &subscriptions)
     }
     
     private func comfigureConstraints() {
@@ -127,17 +134,21 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.tweets.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TweetTableViewCell.identifier, for: indexPath) as? TweetTableViewCell else {
             return UITableViewCell()
         }
+        let tweetModel = viewModel.tweets[indexPath.row]
+        cell.configureTweet(with: tweetModel.author.displayName,
+                            userName: tweetModel.author.username,
+                            tweetTextContent: tweetModel.tweetContent,
+                            avavatarPath: tweetModel.author.avatarPath)
         cell.delegate = self
         return cell
     }
-
 }
 
 extension HomeViewController: TweetTableViewCellDelegate {
